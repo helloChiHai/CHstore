@@ -12,6 +12,6 @@ const Color mau_xam = Color.fromARGB(255, 103, 103, 103);
 
 const Color mau_xam_2 = Color.fromARGB(255, 211, 211, 211);
 
-const Color mau_nen_xam = Color.fromARGB(255, 238, 233, 233);
+const Color mau_nen_xam = Color.fromARGB(255, 232, 241, 245);
 
 const Color mau_xanh_dam = Color.fromARGB(255, 2, 96, 183);

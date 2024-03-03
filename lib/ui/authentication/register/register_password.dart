@@ -5,17 +5,19 @@ import 'package:chstore/const/textSize.dart';
 import 'package:chstore/const/textStyle.dart';
 import 'package:flutter/material.dart';
 
-class Register_AddressPage extends StatefulWidget {
-  const Register_AddressPage({super.key});
+class Register_PasswordPage extends StatefulWidget {
+  const Register_PasswordPage({super.key});
 
   @override
-  State<Register_AddressPage> createState() => _Register_AddressPageState();
+  State<Register_PasswordPage> createState() => _Register_PasswordPageState();
 }
 
-class _Register_AddressPageState extends State<Register_AddressPage> {
+class _Register_PasswordPageState extends State<Register_PasswordPage> {
+  bool _obscureText = true;
+
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController addressController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   late Map<String, dynamic> args;
 
@@ -44,13 +46,13 @@ class _Register_AddressPageState extends State<Register_AddressPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               text(
-                'Bạn đang ở đâu?',
+                'Tạo mật khẩu',
                 text_size_header,
                 Colors.black,
                 FontWeight.bold,
               ),
               text(
-                'Nhập địa chỉ của bạn để chúng tôi tiện giao hàng.',
+                'Tạo mật khẩu gồm ít nhất 6 chữ cái hoặc chữ số. Bạn nên chọn mật khẩu thật khó đoán.',
                 text_size_content,
                 Colors.black,
                 null,
@@ -67,11 +69,17 @@ class _Register_AddressPageState extends State<Register_AddressPage> {
                 child: Column(
                   children: [
                     customInput(
-                      addressController,
-                      'Địa chỉ',
+                      passwordController,
+                      'Mật khẩu',
                       size.width,
-                      false,
-                      'Vui lòng nhập địa chỉ',
+                      true,
+                      'Vui lòng nhập mật khẩu',
+                      _obscureText,
+                      (bool value) {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
                     ),
                     SizedBox(height: size.height * 0.03),
                     GestureDetector(
@@ -80,12 +88,12 @@ class _Register_AddressPageState extends State<Register_AddressPage> {
                           print('Name: ${args['nameUser']}');
                           print('PhoneNumber: ${args['phoneNumber']}');
                           print('emailUser: ${args['emailUser']}');
-                          print('Email: ${addressController.text}');
+                          print('Email: ${passwordController.text}');
                           Navigator.pushNamed(
                             context,
-                            '/Register_PasswordPage',
+                            '/',
                             arguments: {
-                              'address': addressController.text,
+                              'address': passwordController.text,
                             },
                           );
                         }
@@ -103,7 +111,7 @@ class _Register_AddressPageState extends State<Register_AddressPage> {
                   ],
                 ),
               ),
-              SizedBox(height: size.height * 0.492),
+              SizedBox(height: size.height * 0.47),
               Align(
                 alignment: Alignment.center,
                 child: TextButton(

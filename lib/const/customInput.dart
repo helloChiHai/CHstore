@@ -2,7 +2,12 @@ import 'package:chstore/const/textSize.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-customInput(TextEditingController textEditingController, String hintText,
+final RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+
+final RegExp passwordLengthRegex = RegExp(r'^.{6,}$');
+final RegExp passwordUpperLowerRegex = RegExp(r'^(?=.*[a-z])(?=.*[A-Z]).{1,}$');
+
+customInput(TextEditingController textEditingController, String label,
     double width, bool showIconVisibility,
     [String? valueEmpty,
     bool? obscureText,
@@ -31,7 +36,7 @@ customInput(TextEditingController textEditingController, String hintText,
                       : Icons.visibility,
                 ),
               ),
-        hintText: hintText,
+        label: Text(label),
         errorStyle: const TextStyle(fontSize: text_size_content),
         border: InputBorder.none,
         enabledBorder: OutlineInputBorder(

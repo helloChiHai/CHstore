@@ -5,25 +5,18 @@ import 'package:chstore/const/textSize.dart';
 import 'package:chstore/const/textStyle.dart';
 import 'package:flutter/material.dart';
 
-class Register_AddressPage extends StatefulWidget {
-  const Register_AddressPage({super.key});
+class FindAccountWithEmailPage extends StatefulWidget {
+  const FindAccountWithEmailPage({super.key});
 
   @override
-  State<Register_AddressPage> createState() => _Register_AddressPageState();
+  State<FindAccountWithEmailPage> createState() =>
+      _FindAccountWithEmailPageState();
 }
 
-class _Register_AddressPageState extends State<Register_AddressPage> {
+class _FindAccountWithEmailPageState extends State<FindAccountWithEmailPage> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController addressController = TextEditingController();
-
-  late Map<String, dynamic> args;
-
-  @override
-  void didChangeDependencies() {
-    args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    super.didChangeDependencies();
-  }
+  TextEditingController phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +37,13 @@ class _Register_AddressPageState extends State<Register_AddressPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               text(
-                'Bạn đang ở đâu?',
+                'Tìm tài khoản',
                 text_size_header,
                 Colors.black,
                 FontWeight.bold,
               ),
               text(
-                'Nhập địa chỉ của bạn để chúng tôi tiện giao hàng.',
+                'Nhập địa chỉ email của bạn.',
                 text_size_content,
                 Colors.black,
                 null,
@@ -67,31 +60,29 @@ class _Register_AddressPageState extends State<Register_AddressPage> {
                 child: Column(
                   children: [
                     customInput(
-                      addressController,
-                      'Địa chỉ',
+                      phoneNumberController,
+                      'Email',
                       size.width,
                       false,
-                      'Vui lòng nhập địa chỉ',
+                      'Vui lòng nhập email',
                     ),
+                    SizedBox(height: size.height * 0.01),
                     SizedBox(height: size.height * 0.03),
                     GestureDetector(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
-                          print('Name: ${args['nameUser']}');
-                          print('PhoneNumber: ${args['phoneNumber']}');
-                          print('emailUser: ${args['emailUser']}');
-                          print('Email: ${addressController.text}');
-                          Navigator.pushNamed(
-                            context,
-                            '/Register_PasswordPage',
-                            arguments: {
-                              'address': addressController.text,
-                            },
-                          );
+                          // Navigator.pushNamed(
+                          //   context,
+                          //   '/Register_EmailPage',
+                          //   arguments: {
+                          //     'nameUser': args['nameUser'],
+                          //     'phoneNumber': phoneNumberController.text,
+                          //   },
+                          // );
                         }
                       },
                       child: customButton(
-                        'Tiếp',
+                        'Tiếp tục',
                         mau_xanh_dam,
                         Colors.white,
                         size.width,
@@ -99,23 +90,20 @@ class _Register_AddressPageState extends State<Register_AddressPage> {
                         10,
                       ),
                     ),
-                    SizedBox(height: size.height * 0.03),
+                    SizedBox(height: size.height * 0.01),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, '/FindAccountWithNumberPhonePage');
+                      },
+                      child: text(
+                        'Tìm kiếm bằng số di động',
+                        text_size_content,
+                        Colors.black,
+                        FontWeight.bold,
+                      ),
+                    )
                   ],
-                ),
-              ),
-              SizedBox(height: size.height * 0.492),
-              Align(
-                alignment: Alignment.center,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/LoginPage');
-                  },
-                  child: text(
-                    'Tôi đã có tài khoản rồi',
-                    text_size_content,
-                    mau_xanh_dam,
-                    FontWeight.bold,
-                  ),
                 ),
               ),
             ],

@@ -5,25 +5,17 @@ import 'package:chstore/const/textSize.dart';
 import 'package:chstore/const/textStyle.dart';
 import 'package:flutter/material.dart';
 
-class Register_AddressPage extends StatefulWidget {
-  const Register_AddressPage({super.key});
+class Register_NamePage extends StatefulWidget {
+  const Register_NamePage({super.key});
 
   @override
-  State<Register_AddressPage> createState() => _Register_AddressPageState();
+  State<Register_NamePage> createState() => _Register_NamePageState();
 }
 
-class _Register_AddressPageState extends State<Register_AddressPage> {
+class _Register_NamePageState extends State<Register_NamePage> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController addressController = TextEditingController();
-
-  late Map<String, dynamic> args;
-
-  @override
-  void didChangeDependencies() {
-    args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    super.didChangeDependencies();
-  }
+  TextEditingController nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +36,13 @@ class _Register_AddressPageState extends State<Register_AddressPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               text(
-                'Bạn đang ở đâu?',
+                'Bạn tên gì?',
                 text_size_header,
                 Colors.black,
                 FontWeight.bold,
               ),
               text(
-                'Nhập địa chỉ của bạn để chúng tôi tiện giao hàng.',
+                'Nhập tên bạn sử dụng trong đời thực.',
                 text_size_content,
                 Colors.black,
                 null,
@@ -61,31 +53,27 @@ class _Register_AddressPageState extends State<Register_AddressPage> {
                 TextAlign.left,
               ),
               SizedBox(height: size.height * 0.03),
-              // FORM
+              // FORM ĐĂNG NHẬP
               Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     customInput(
-                      addressController,
-                      'Địa chỉ',
+                      nameController,
+                      'Họ và tên',
                       size.width,
                       false,
-                      'Vui lòng nhập địa chỉ',
+                      'Vui lòng nhập tên',
                     ),
                     SizedBox(height: size.height * 0.03),
                     GestureDetector(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
-                          print('Name: ${args['nameUser']}');
-                          print('PhoneNumber: ${args['phoneNumber']}');
-                          print('emailUser: ${args['emailUser']}');
-                          print('Email: ${addressController.text}');
                           Navigator.pushNamed(
                             context,
-                            '/Register_PasswordPage',
+                            '/Register_NumberPhonePage',
                             arguments: {
-                              'address': addressController.text,
+                              'nameUser': nameController.text,
                             },
                           );
                         }
@@ -103,7 +91,7 @@ class _Register_AddressPageState extends State<Register_AddressPage> {
                   ],
                 ),
               ),
-              SizedBox(height: size.height * 0.492),
+              SizedBox(height: size.height * 0.498),
               Align(
                 alignment: Alignment.center,
                 child: TextButton(

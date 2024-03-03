@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     customInput(
                       emailController,
-                      'chstore123@gmail.com',
+                      'Email',
                       size.width * 0.7,
                       false,
                       'Vui lòng nhập email',
@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(height: size.height * 0.01),
                     customInput(
                         passwordController,
-                        '************',
+                        'Mật khẩu',
                         size.width * 0.7,
                         true,
                         'Vui lòng nhập mật khẩu',
@@ -69,7 +69,6 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {
                         _obscureText = !_obscureText;
                       });
-                      print(_obscureText);
                     }),
                     SizedBox(height: size.height * 0.03),
                     GestureDetector(
@@ -97,7 +96,8 @@ class _LoginPageState extends State<LoginPage> {
               // NÚT QUÊN MẬT KHẨU
               GestureDetector(
                 onTap: () {
-                  print('chuyen san man hinh quen mat khau');
+                  Navigator.pushNamed(
+                      context, '/FindAccountWithNumberPhonePage');
                 },
                 child: text(
                   'Bạn quên mật khẩu ư?',
@@ -173,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    '/Register_EmailPage',
+                    '/Register_NamePage',
                   );
                 },
                 child: customButton(

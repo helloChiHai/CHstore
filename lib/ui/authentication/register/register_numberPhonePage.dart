@@ -37,27 +37,31 @@ class _Register_NumberPhonePageState extends State<Register_NumberPhonePage> {
         width: size.width,
         height: size.height,
         color: mau_nen_xam,
+        padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
           physics: NeverScrollableScrollPhysics(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: size.height * 0.1),
               text(
-                'Hãy cho chúng tôi biết SDT của bạn',
+                'Số di động của bạn là gì?',
                 text_size_header,
                 Colors.black,
                 FontWeight.bold,
               ),
-              SizedBox(height: size.height * 0.1),
               text(
-                args['emailUser'],
-                text_size_header,
+                'Nhập số di động có thể dùng để liên hệ với bạn. Thông tin này sẽ không hiển thị với ai khác.',
+                text_size_content,
                 Colors.black,
-                FontWeight.bold,
+                null,
+                null,
+                null,
+                5,
+                null,
+                TextAlign.left,
               ),
-              SizedBox(height: size.height * 0.05),
+              SizedBox(height: size.height * 0.03),
               // FORM
               Form(
                 key: _formKey,
@@ -65,39 +69,56 @@ class _Register_NumberPhonePageState extends State<Register_NumberPhonePage> {
                   children: [
                     customInput(
                       phoneNumberController,
-                      '0123456789',
-                      size.width * 0.7,
+                      'Nhập số điện thoại',
+                      size.width,
                       false,
                       'Vui lòng nhập SDT',
                       null,
                       null,
                       TextInputType.phone,
                     ),
-                    SizedBox(height: size.height * 0.01),
+                    SizedBox(height: size.height * 0.03),
                     GestureDetector(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
+                          print('Name: ${args['nameUser']}');
+                          print('Number phone: ${phoneNumberController.text}');
                           Navigator.pushNamed(
                             context,
-                            '/Register_AddressPage',
+                            '/Register_EmailPage',
                             arguments: {
-                              'email': args['emailUser'],
+                              'nameUser': args['nameUser'],
                               'phoneNumber': phoneNumberController.text,
                             },
                           );
                         }
                       },
                       child: customButton(
-                        'Tiếp tục',
+                        'Tiếp',
                         mau_xanh_dam,
                         Colors.white,
-                        size.width * 0.7,
+                        size.width,
                         10,
                         10,
                       ),
                     ),
                     SizedBox(height: size.height * 0.03),
                   ],
+                ),
+              ),
+              SizedBox(height: size.height * 0.475),
+              Align(
+                alignment: Alignment.center,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/LoginPage');
+                  },
+                  child: text(
+                    'Tôi đã có tài khoản rồi',
+                    text_size_content,
+                    mau_xanh_dam,
+                    FontWeight.bold,
+                  ),
                 ),
               ),
             ],
