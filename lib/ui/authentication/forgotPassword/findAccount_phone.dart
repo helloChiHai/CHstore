@@ -177,7 +177,7 @@ class _FindAccountWithNumberPhonePageState
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/WelcomeCreateAccountPage');
               },
             ),
           ],

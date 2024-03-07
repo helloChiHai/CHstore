@@ -17,6 +17,6 @@ customButton(String content, Color backgroundColor, Color textColor,
         width: 1,
       ),
     ),
-    child: text(content, text_size_header, textColor, FontWeight.bold),
+    child: text(content, text_size_notification, textColor, FontWeight.bold),
   );
 }

@@ -6,6 +6,7 @@ import 'package:chstore/ui/authentication/register/register_emailPage.dart';
 import 'package:chstore/ui/authentication/register/register_namePage.dart';
 import 'package:chstore/ui/authentication/register/register_numberPhonePage.dart';
 import 'package:chstore/ui/authentication/register/register_password.dart';
+import 'package:chstore/ui/authentication/register/welcome_createAccountPage.dart';
 import 'package:chstore/ui/authentication/welcomePage.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
+        '/WelcomeCreateAccountPage': (context) => WelcomeCreateAccountPage(),
         '/WelcomePage': (context) => WelcomePage(),
         '/LoginPage': (context) => LoginPage(),
         '/Register_EmailPage': (context) => Register_EmailPage(),

@@ -173,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                 onTap: () {
                   Navigator.pushNamed(
                     context,
-                    '/Register_NamePage',
+                    '/WelcomeCreateAccountPage',
                   );
                 },
                 child: customButton(

@@ -16,7 +16,7 @@ class FindAccountWithEmailPage extends StatefulWidget {
 class _FindAccountWithEmailPageState extends State<FindAccountWithEmailPage> {
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController phoneNumberController = TextEditingController();
+  static TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class _FindAccountWithEmailPageState extends State<FindAccountWithEmailPage> {
                 child: Column(
                   children: [
                     customInput(
-                      phoneNumberController,
+                      emailController,
                       'Email',
                       size.width,
                       false,
@@ -71,14 +71,10 @@ class _FindAccountWithEmailPageState extends State<FindAccountWithEmailPage> {
                     GestureDetector(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
-                          // Navigator.pushNamed(
-                          //   context,
-                          //   '/Register_EmailPage',
-                          //   arguments: {
-                          //     'nameUser': args['nameUser'],
-                          //     'phoneNumber': phoneNumberController.text,
-                          //   },
-                          // );
+                          Future.delayed(Duration(milliseconds: 100), () {
+                            Navigator.of(context)
+                                .restorablePush(_dialogBuilder);
+                          });
                         }
                       },
                       child: customButton(
@@ -110,6 +106,65 @@ class _FindAccountWithEmailPageState extends State<FindAccountWithEmailPage> {
           ),
         ),
       ),
+    );
+  }
+
+  @pragma('vm:entry-point')
+  static Route<Object?> _dialogBuilder(
+      BuildContext context, Object? arguments) {
+    return DialogRoute<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          title: const Text(
+            'Chúng tôi không tìm thấy tài khoản của bạn. Bạn có muốn tạo tài khoản mới không?',
+            style: TextStyle(
+              fontSize: text_size_header_content,
+              color: Colors.black,
+            ),
+          ),
+          content: Text(
+            'Có vẻ như ${emailController.text} không kết nối với tài khoản nào. Bạn có thẻ tạo tài khoản mới bằng số di động này hoặc thử lại.',
+            style: const TextStyle(
+              fontSize: text_size_content,
+              color: Color.fromARGB(255, 64, 63, 63),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text(
+                'THỬ LẠI',
+                style: TextStyle(
+                  fontSize: text_size_content,
+                  color: Colors.black,
+                ),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text(
+                'TẠO TÀI KHOẢN MỚI',
+                style: TextStyle(
+                  fontSize: text_size_content,
+                  color: mau_xanh_dam,
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/WelcomeCreateAccountPage');
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
