@@ -77,14 +77,19 @@ class _Register_AddressPageState extends State<Register_AddressPage> {
                     GestureDetector(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
+                          print('-------------------------------------------');
                           print('Name: ${args['nameUser']}');
                           print('PhoneNumber: ${args['phoneNumber']}');
                           print('emailUser: ${args['emailUser']}');
-                          print('Email: ${addressController.text}');
+                          print('address: ${addressController.text}');
+                          print('======================================');
                           Navigator.pushNamed(
                             context,
                             '/Register_PasswordPage',
                             arguments: {
+                              'nameUser': args['nameUser'],
+                              'phoneNumber': args['phoneNumber'],
+                              'emailUser': args['emailUser'],
                               'address': addressController.text,
                             },
                           );

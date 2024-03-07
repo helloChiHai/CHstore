@@ -85,17 +85,20 @@ class _Register_PasswordPageState extends State<Register_PasswordPage> {
                     GestureDetector(
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
+                          print('-------------------------------------------');
                           print('Name: ${args['nameUser']}');
                           print('PhoneNumber: ${args['phoneNumber']}');
                           print('emailUser: ${args['emailUser']}');
-                          print('Email: ${passwordController.text}');
-                          Navigator.pushNamed(
-                            context,
-                            '/',
-                            arguments: {
-                              'address': passwordController.text,
-                            },
-                          );
+                          print('address: ${args['address']}');
+                          print('password: ${passwordController.text}');
+                          print('======================================');
+                          // Navigator.pushNamed(
+                          //   context,
+                          //   '/',
+                          //   arguments: {
+                          //     'address': passwordController.text,
+                          //   },
+                          // );
                         }
                       },
                       child: customButton(
