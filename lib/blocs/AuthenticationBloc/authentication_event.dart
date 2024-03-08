@@ -22,4 +22,13 @@ class CreateUser extends AuthenticationEvent {
   List<Object> get props => [email, password, name, sdt, address];
 }
 
+class SignIn extends AuthenticationEvent {
+  final String email;
+  final String password;
+  const SignIn({required this.email, required this.password});
+
+  @override
+  List<Object> get props => [email, password];
+}
+
 class SignOut extends AuthenticationEvent {}

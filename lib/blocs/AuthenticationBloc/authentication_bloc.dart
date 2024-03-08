@@ -21,10 +21,35 @@ class AuthenticationBloc
           if (user != null) {
             emit(AuthenticationSuccessState(user));
           } else {
-            emit(const AuthenticationFailureState(error: 'create user fail'));
+            emit(
+              const AuthenticationFailureState(
+                error: 'Tạo tài khoản thất bại',
+              ),
+            );
           }
         } catch (e) {
           print(e.toString());
+        }
+      },
+    );
+
+    on<SignIn>(
+      (event, emit) async {
+        emit(AuthenticationLoadingState(isLoading: true));
+        try {
+          final UserModel? user =
+              await authenService.signInUser(event.email, event.password);
+
+          if (user != null) {
+            emit(AuthenticationSuccessState(user));
+          } else {
+            emit(const AuthenticationFailureState(
+                error: 'Đăng nhập không thành công'));
+          }
+        } catch (e) {
+          print(e.toString());
+          emit(const AuthenticationFailureState(
+              error: 'Đã xảy ra lỗi khi đăng nhập'));
         }
       },
     );

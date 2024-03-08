@@ -9,10 +9,13 @@ import 'package:chstore/ui/authentication/register/register_numberPhonePage.dart
 import 'package:chstore/ui/authentication/register/register_password.dart';
 import 'package:chstore/ui/authentication/register/welcome_createAccountPage.dart';
 import 'package:chstore/ui/authentication/welcomePage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
