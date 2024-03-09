@@ -44,12 +44,12 @@ class AuthenticationBloc
             emit(AuthenticationSuccessState(user));
           } else {
             emit(const AuthenticationFailureState(
-                error: 'Đăng nhập không thành công'));
+                error: 'Sai tài khoản hoặc mật khẩu'));
           }
         } catch (e) {
           print(e.toString());
           emit(const AuthenticationFailureState(
-              error: 'Đã xảy ra lỗi khi đăng nhập'));
+              error: 'Sai tài khoản hoặc mật khẩu'));
         }
       },
     );

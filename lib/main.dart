@@ -9,6 +9,7 @@ import 'package:chstore/ui/authentication/register/register_numberPhonePage.dart
 import 'package:chstore/ui/authentication/register/register_password.dart';
 import 'package:chstore/ui/authentication/register/welcome_createAccountPage.dart';
 import 'package:chstore/ui/authentication/welcomePage.dart';
+import 'package:chstore/ui/homePage/homePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         initialRoute: '/',
         routes: {
+          '/HomePage': (context) => HomePage(),
           '/WelcomeCreateAccountPage': (context) => WelcomeCreateAccountPage(),
           '/WelcomePage': (context) => WelcomePage(),
           '/LoginPage': (context) => LoginPage(),
@@ -51,7 +53,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         debugShowCheckedModeBanner: false,
-        home: WelcomePage(),
+        home: HomePage(),
       ),
     );
   }
