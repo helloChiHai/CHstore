@@ -1,3 +1,4 @@
+import 'package:chstore/ui/homePage/showProductPage.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -12,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   List<Widget> screens = [
-    Container(color: Colors.blue, child: Center(child: Text('Home'))),
+    ShowProductPage(),
     Container(color: Colors.green, child: Center(child: Text('Search'))),
     Container(color: Colors.orange, child: Center(child: Text('Cart'))),
     Container(color: Colors.red, child: Center(child: Text('Settings'))),

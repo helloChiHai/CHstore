@@ -1,4 +1,5 @@
 import 'package:chstore/blocs/AuthenticationBloc/authentication_bloc.dart';
+import 'package:chstore/blocs/ProductBloc/product_bloc.dart';
 import 'package:chstore/ui/authentication/forgotPassword/findAccount_email.dart';
 import 'package:chstore/ui/authentication/forgotPassword/findAccount_phone.dart';
 import 'package:chstore/ui/authentication/loginPage.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<AuthenticationBloc>(
           create: (BuildContext context) => AuthenticationBloc(),
+        ),
+        BlocProvider<ProductBloc>(
+          create: (BuildContext context) => ProductBloc(),
         ),
       ],
       child: MaterialApp(

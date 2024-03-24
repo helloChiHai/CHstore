@@ -10,8 +10,8 @@ class ProductModel {
     required this.idEvent,
     required this.nameProduct,
     required this.imgProduct,
-    required this.priceProduct,
-  });
+    required String priceProduct,
+  }) : priceProduct = double.parse(priceProduct);
 
   Map<String, dynamic> toMap() {
     return {
